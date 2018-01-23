@@ -71,6 +71,7 @@ double clock_time()
 #endif
 #ifdef HAVE_MACH_TIMER
     now = mach_absolute_time();
+    delta = (now - last_count) / (double)frequency;
 #endif
 #ifdef HAVE_WIN32_TIMER
     {
