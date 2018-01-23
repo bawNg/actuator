@@ -2,7 +2,7 @@
 #include "clock.h"
 #include "debug.h"
 
-#if !defined(__APPLE__) && !defined(_WIN32)
+#if !defined(__APPLE__) && !defined(__MACH__) && !defined(_WIN32)
 #define HAVE_POSIX_TIMER
 #include <time.h>
 #ifdef CLOCK_MONOTONIC
@@ -12,7 +12,7 @@
 #endif
 #endif
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__MACH__)
 #define HAVE_MACH_TIMER
 #include <mach/mach_time.h>
 #endif
@@ -20,10 +20,13 @@
 #if defined(_WIN32) || defined(_MSC_VER)
 #define HAVE_WIN32_TIMER
 #include <windows.h>
-
 #ifdef _MSC_VER
 #include <Strsafe.h>
 #endif
+#endif
+
+#if !defined(HAVE_POSIX_TIMER) && !defined(HAVE_MACH_TIMER) && !defined(HAVE_WIN32_TIMER)
+#error Only Windows, Linux and OSX are supported
 #endif
 
 static uint64_t last_count;
