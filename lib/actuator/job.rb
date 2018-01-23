@@ -84,7 +84,7 @@ module Actuator
     attr_writer :thread_variables
 
     def job_started
-      raise "[Job #@id] job_started called multiple times" if @id
+      #raise "[Job #@id] job_started called multiple times" if @id
       @id = @@total += 1
       # @@active_jobs << self
     end

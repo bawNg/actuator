@@ -28,21 +28,25 @@ static void Print(const char *tag, const char *format, va_list args)
 static VALUE Log_Debug(VALUE self, VALUE message)
 {
     Log::Debug("%s", StringValueCStr(message));
+    return Qnil;
 }
 
 static VALUE Log_Info(VALUE self, VALUE message)
 {
     Log::Info("%s", StringValueCStr(message));
+    return Qnil;
 }
 
 static VALUE Log_Warn(VALUE self, VALUE message)
 {
     Log::Warn("%s", StringValueCStr(message));
+    return Qnil;
 }
 
 static VALUE Log_Error(VALUE self, VALUE message)
 {
     Log::Error("%s", StringValueCStr(message));
+    return Qnil;
 }
 
 static VALUE Log_SetFilePath(VALUE self, VALUE path)
@@ -52,7 +56,7 @@ static VALUE Log_SetFilePath(VALUE self, VALUE path)
     } else if (SYMBOL_P(path) && SYM2ID(path) == rb_intern("stdout")) {
         Log::log_file = stdout;
     } else if (RB_TYPE_P(path, T_STRING) && CLASS_OF(path) == rb_cString) {
-        Log::log_file = fopen(rb_id2name(SYM2ID(path)), "w");
+        Log::log_file = fopen(RSTRING_PTR(path), "w");
     } else {
         rb_raise(rb_eRuntimeError, "path must be a string, :stdout or nil");
     }

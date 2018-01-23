@@ -4,7 +4,7 @@ require_relative 'actuator/fiber'
 require_relative 'actuator/fiber_pool'
 
 module Actuator
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 
   class << self
     def run
