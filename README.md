@@ -79,6 +79,8 @@ and error handling has been implemented in order to minimize overhead. Using the
   ```
 
 #### Known issues
+- Timer precision is much worse on OSX. This is most likely due to threads taking too long to wake up.
+  I don't have an OSX machine to be able to test, hopefully someone else can investigate and submit a patch.
 - Memory for active timers will not be freed when calling Actuator.stop
 - The profiling API will include time spent yielded from the job.
   The job-aware implementation has been commented out to reduce overhead until the profiling has been rewritten in C++.
