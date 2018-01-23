@@ -9,6 +9,7 @@ Hoe.plugin :clean
 Hoe.spec "actuator" do
   developer 'bawNg', 'bawng@intoxicated.co.za'
   license 'MIT'
+  self.urls = 'https://github.com/bawNg/actuator'
 
   self.extra_dev_deps << ['rake-compiler', '>= 0']
   self.extra_dev_deps << ['minitest', '>= 0']

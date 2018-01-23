@@ -1,9 +1,7 @@
 require 'minitest'
 require 'minitest/autorun'
 
-#require_relative '../lib/actuator'
-gem 'actuator'
-require 'actuator'
+require_relative '../lib/actuator'
 
 module Minitest
   class << self
